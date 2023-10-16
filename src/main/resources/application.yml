@@ -1,0 +1,59 @@
+server:
+  port: 9090
+  #  ip: 121.5.137.138
+  ip: localhost
+
+spring:
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+#    url: jdbc:sqlserver://10.10.2.15:1433;DatabaseName=aponts
+    url: jdbc:sqlserver://116.62.46.33:61433;DatabaseName=aponts
+    username: sa
+    password: Apon@2023
+
+    #    driver-class-name: com.mysql.cj.jdbc.Driver
+    #    url: jdbc:mysql://47.100.178.59:3306/aponts?serverTimezone=GMT%2b8
+    #    username: root
+    #    password: root1234
+
+    hikari:
+      max-lifetime: 500000
+  mvc:
+    path match:
+      matching-strategy: ant_path_matcher
+  jackson:
+    date-format: yyyy-MM-dd  HH:mm:ss #指定格式化时间戳
+    time-zone: GMT+8  #设置时区
+    # 发送邮件配置
+  mail:
+#    host: smtp.qq.com # 配置 smtp 服务器地址
+#    port: 587 # smtp 服务器的端口
+#    username: 315468701@qq.com # 配置邮箱用户名(你的邮箱地址)
+#    password: jhuxqlzmmaxlbiah # 配置申请到的授权码(刚让复制的授权码)
+    host: smtp.yeah.net # 配置 smtp 服务器地址
+    port: 25 # smtp 服务器的端口
+    username: aponts@yeah.net # 配置邮箱用户名(你的邮箱地址)
+    password: NURFNULAUXVLFLPX # 配置申请到的授权码(刚让复制的授权码)
+    default-encoding: UTF-8 # 配置邮件编码
+    properties:
+      mail:
+        smtp:
+          socketFactoryClass: javax.net.ssl.SSLSocketFactory # 配饰 SSL 加密工厂
+        debug: true
+    from: aponts@yeah.net # 发送方邮件，配在yml中可方便更改
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml   #扫描所有mybatis的xml文件
+#mybatis日志
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+#mybatis-plus
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: false #mybatis-plus关闭驼峰命名！
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+#Spring Boot 2.6.x 请求路径与 Spring MVC 处理映射匹配的默认策略从AntPathMatcher更改为PathPatternParser
+
